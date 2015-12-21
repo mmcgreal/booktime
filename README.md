@@ -1,5 +1,5 @@
 # BookTime
-* BookTime will provide users with easy access to their favorite novels, biographies, short stories, and more!  Users will be able to search for a specific book based on title, author, or a key word. Each book entry will contain:
+* BookTime will provide users with easy access to their favorite novels, biographies, short stories, and more!  Users will be able to search for a specific book based on title, author, or a key word. Individual accounts will allow users to store and organuze books in different libraries. Each book entry will contain:
 	*A plot summary
 	*An MLA citation
 	*Links to purchase the book
@@ -10,9 +10,11 @@
 ## Tools:
 * Google Books API.
 * Project Gutenberg Data
+* AJAX and JQuery to better the user experience
 
 ##Futute Implementations
 * Include SparkNotes links/ information
+* Use JS Live Updates for when a new and/or better offer on a book is released
 
 
 ## The Team
