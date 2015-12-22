@@ -1,12 +1,101 @@
 <!doctype html>
 
-<html>
-	<head>
-		<h1>Book Time</h1>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <div class="container">
+      <img class="img-responsive center-block"
+                             src="http://i.imgur.com/hv1Da5q.png"
+                             alt="Imgur is down so our banner is temporarily kill."
+                             width="70%"
+                             height="70%">
 
-	</head>
-	<body>
+      <nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+	  
+	  <div>
+	    <ul class="nav navbar-nav">
+              <li class="active"><a href="/home">Home</a></li>
+              {% if LOGGEDIN %}
+			  <li><a href="/myaccount">My Account</a></li>
+              {% endif %}
+			  <li><a href="/about">About</a></li> 
+	    </ul>
 
-	</body>
+	    <form action="" class="navbar-form navbar-right" method="POST">
+	      <div class="input-group">
+		<input type="Search" name="query" placeholder="Search..." class="form-control" />
+		<div class="input-group-btn">
+		  <button class="btn btn-info" name="search">
+		    <span class="glyphicon glyphicon-search"></span>
+		  </button>
+		</div>
+	      </div>
+	    </form>
+	    {% if LOGGEDIN %}
+		<ul class="nav navbar-nav navbar-right">
+              <li><a href="/myaccount"><span class="glyphicon glyphicon-user"></span> &nbsp;Hello, {{LOGGEDIN}}!</a></li>
+			  <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+	    </ul>
+		{% else %}
+	    <ul class="nav navbar-nav navbar-right">
+              <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+	    </ul>
+		{% endif %}
+		
+	  </div>
+	</div>
+      </nav>
 
+<!--
+      <div class="input-group margin-bottom-sm">
+	<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i>Post</span>
+	<input class="form-control" type="text" placeholder="Make a post">
+      </div>
+--> 
+<h2> Make a new post: </h2>
+	<form method="POST" role="form">
+		<textarea type="text" name="title" class="form-control custom-control" rows="1" placeholder="Title" style="resize:none"></textarea>     
+      	<textarea type="text" name="cont" class="form-control custom-control" rows="3" placeholder="Post content" style="resize:none"></textarea>
+      	<input type="submit" class="btn btn-info" name="submitpost" value="Spread the news!">  
+    
+	</form>
+
+	{% for i in POSTS: %}
+	<b><h1> {{i[0]}} </h1></b> Posted by {{i[5]}} on {{i[4]}}<h3> {{i[1]}} </h3> 
+	{% if LOGGEDIN == i[5]%}
+	<form method="POST" role="form">
+	<input type="submit" class="button" name="{{i[2]}}" value="Delete this post.">
+	</form>
+	{% endif %}
+	<br>
+	{% for z in COMMENTS: %}
+		{% if z[0][0] == i[2] %} <!--if this set's comment IDs match this post ID--> 
+			{% for x in z %}
+				&nbsp;&nbsp;&nbsp;&nbsp;{{x[3]}}, &nbsp;{{x[4]}} commented: {{x[1]}} <br>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+	<br>
+	<form method="POST" role="form">
+	<div class="col-xs-4">
+	<textarea type="text" name="{{i[2]}}" id="ex3" class="form-control custom-control" rows="1" placeholder="Make a comment..." style="resize:none"></textarea>
+	<input type="submit" class="button" name="submitcomment" value="Comment.">
+	</div>
+	</form>
+	<br>
+	<br>
+	<br>
+	<hr>
+	{% endfor %}
+	
+	</body>   
 </html>
