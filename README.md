@@ -23,3 +23,28 @@
 |Leader    |Ari Hatzimemos  |
 |Frontend  |Andrew Kratsios |
 |Backend   |Mary McGreal    |
+
+##To Do List
+* README.md
+* app.py
+  * APIs
+* utils.py
+  * user account database
+* user interface
+  *javascript/AJAX where needed
+  * templates
+    * css
+    * html
+
+##Timeline
+* By midnight January 10th (Sunday night):
+  * all API work in app.py
+* By midnight January 13th (Wednesday night):
+  * at least half of utils.py
+* By midnight January 17th (Sunday night):
+  * user accounts
+  * templates
+* By midnight January 20th (Wednesday night):
+  * finish utils.py
+* by midnight January 21st (Thursday night):
+  * polish up everything and submit!
