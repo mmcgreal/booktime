@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Edit Story
+
+{% endblock %}
+
+{% block contents %}
+
+
+
+
+<div class="main">
+
+  <h1>Add a line to Story</h1>
+  <form method="POST">
+    <textarea type="text" name="body" maxlength="256" placeholder="Enter text here..."></textarea>
+    <br>
+    <input type="submit" name="sub" value="Submit" class="btn">
+  </form>
+  <br>
+  <button class="btn"><a href="/userpage">Back to the Main Page</a></button>
+  <button class="btn"><a href="/logout">Logout</a></button>
+</div>
+
+{% endblock %}
+
+{% block heading %}Add a New Line{% endblock %}

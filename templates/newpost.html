@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Create a New Post
+
+{% endblock %}
+
+{% block contents %}
+
+<div class="container">
+
+<div class="main">
+
+<form method="POST">
+  <h3>Title (maximum 256 characters)</h3> 
+  <textarea type="text" name="title" placeholder="Title" class="titleinput"></textarea>
+  <br><br><br>
+  <h3>Body (maximum 256 characters)</h3>
+  <textarea type="text" name="body" maxlength="256" placeholder="Enter text here..."></textarea>
+  <br>
+  <input type="submit" name="sub" value="Submit" class="btn">
+</form>
+
+
+
+
+<button class="btn"><a href="{{url_for('userpage')}}"> Back to the Main Page </a></button>
+
+<br><br>
+
+</div>
+
+{% endblock %}
+
+{% block heading %}Create a New Post{% endblock %}

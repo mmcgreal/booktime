@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Story{% endblock %}
+
+{% block contents %}
+
+<div class="container">
+  <div class="sidebar">
+    <br><br><br><br>
+    <h3>{{uname}}</h3>
+    <h3>Your Posts</h3>
+  </div>
+  
+  <div class="header"></div>
+  <div class="headtext">
+    <img id="logo" class="smalllogo" src="{{ url_for('static', filename='ebook_circle.png') }}" alt="storyboredlogo" height="50">
+    <h1 class="headtext">POSTS</h1>
+   <a href="/logout" class="btn" style="float: right"> Logout </a>
+  </div>
+  
+  
+  <div class="main">
+    </div>
+
+    <div class="story">
+      <code>
+	<font size="5">
+	{% if storyid == None %}
+	  {% for post in posts %}
+	  {{ post[2]|idtoname }}: <a href="{{ url_for('story', storyid=post[0]) }}">{{ post[1] }}</a>
+	  <br>
+	  <br>
+	  {% endfor %}
+	{% else %}
+  	<!-- SHOULDN'T BE USING FIXED SIZES BUT I DON'T KNOW WHAT ELSE TO DO ON SUCH SHORT NOTICE. ACK!-->
+	  {% for line in content %}
+	    <p style="text-align:left;"><span style="opacity:0.7;">{{ line [1] }} |</span> {{ line[0] }}</p>
+	  {% endfor %}
+	{% endif %}
+	</font>
+      </code>
+    
+    
+    <div class="return">
+      <table border="1" cellpadding="200">
+	{% if storyid != None %}
+	<tr><button class="btn"><a href="{{ url_for('edit', storyid=storyid) }}">Add to this story</a></button></tr>
+	{% endif %}
+	<tr><button class="btn"><a href="/userpage">Back to the Main Page</a></button></tr>
+	<tr><button class="btn"><a href="{{ url_for('deletepost', storyid=storyid) }}">Delete this post</a></button></tr>
+	<tr><button class="btn"><a href="/deleteline">Delete the last line</a></button></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block heading %}{{ title }}{% endblock %}
