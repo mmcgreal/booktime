@@ -88,7 +88,7 @@ a {
 .how {
     padding-top:5%;
     padding-bottom: 5%;
-    background-color: #f1c40f;
+    background-color: rgb(240,210,30);
     min-height: 100%;
     height:auto !important;
     height:100%;
@@ -96,7 +96,7 @@ a {
 
 .wrapper {
     padding-top: 100px;
-    background-color:#1abc9c;
+    background-color:rgb(100,0,200);
     min-height: 100%;
     height:auto !important;
     height:100%;
@@ -115,7 +115,7 @@ p {
 .team {
     padding-top:5%;
     padding-bottom: 5%;
-    background-color: #9b59b6;
+    background-color: rgb(0,100,0);
     min-height: 100%;
     color: white;
     height:auto !important;
