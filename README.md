@@ -47,6 +47,7 @@
 * create libraries for books
 	* instead of users being directed to a main page with book entries, allow them to select a library which will then display books they/ other users have searched for and stored
 * finalize color scheme!!
+* description of BookTime on homepage
 
 ##Timeline
 * By midnight January 10th (Sunday night):
