@@ -30,11 +30,22 @@
   * APIs
 * utils.py
   * user account database
+  * helper functions (i.e. removing whitespace from string input)
+* user.py
+	* authenticates user logins
+* database.py
+	* handles data from the database
 * user interface
-  *javascript/AJAX where needed
+  * javascript/AJAX where needed
   * templates
     * css
     * html
+	
+###left to do:
+* finalize images for website
+* make a stored book less like a post and more like a "favorite" item
+* create libraries for books
+	* instead of users being directed to a main page with book entries, allow them to select a library which will then display books they/ other users have searched for and stored
 
 ##Timeline
 * By midnight January 10th (Sunday night):

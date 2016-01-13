@@ -9,7 +9,7 @@
 
   
   <div class="main">
-    <button class="btn"><a href="{{url_for('newpost')}}"> Make a New Post </a></button>
+    <button class="btn"><a href="{{url_for('newpost')}}"> Search for a New Book </a></button>
     <center>
     
     {% for post in posts %}
@@ -30,4 +30,4 @@
 </div>
 {% endblock %}
 
-  {% block heading %}Welcome, {{uname}}!{% endblock %}
+  {% block heading %}Welcome to BookTime, {{uname}}!{% endblock %}
