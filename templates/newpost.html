@@ -1,8 +1,6 @@
-{% extends "base.html" %}
-
 {% block title %}
 
-Create a New Post
+Search for a book!
 
 {% endblock %}
 
@@ -22,9 +20,6 @@ Create a New Post
   <input type="submit" name="sub" value="Submit" class="btn">
 </form>
 
-
-
-
 <button class="btn"><a href="{{url_for('userpage')}}"> Back to the Main Page </a></button>
 
 <br><br>
@@ -33,4 +28,4 @@ Create a New Post
 
 {% endblock %}
 
-{% block heading %}Create a New Post{% endblock %}
+{% block heading %}Book Search{% endblock %}
