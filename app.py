@@ -1,6 +1,15 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from database import Database, format_schema
 import user
+import json
+import urllib2
+
+google_books_API = "https://www.googleapis.com/books/v1/volumes?q=%s&langRestrict=english&maxResults=40&orderBy=relevance&printType=books&showPreorders=true&key=AIzaSyCD5VLpef_d-PeOW7ISL3VsHQCdiuD_T1U" %(book)
+
+def apiCall(n):
+    request = urllib2.urlopen(n)
+    result = request.read()
+    return json.loads(result)
 
 DATABASE = './database.db'
 SCHEMA = [
