@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html> 
+  <head>
+    <title>
+      {% if artist %}
+      {{artist}}
+      {% endif %}
+    </title>
+  </head>
+
+<div style="background-image:url(http://www.musicalityacademy.com/wp-content/uploads/2014/01/music-notes-white-background-wallpaper1.gif);">
+
+  <body bgcolor="silver">
+    <h1 align="center">
+      {{artist}}
+    </h1>
+
+    <form method = "POST">
+      Search for an artist/band: 
+      <input type = "text" name = "artist" placeholder="Radiohead"></input>
+      <input type="submit" name="button" value="find"></input>
+    </form>
+    <br>
+
+{# NOTE: This will get confusing: there will be one huge table split
+into two columns, left for image, right for tracks. Each will be it's
+own table, i.e. 2 tables in 1 huge table. The track one will only have
+tracks, the left will have a picture in each row (tr). This should
+allow for the pictures to be aligned and the tracks next to the 
+pictures, incase there will be more than one picture. #}
+
+    <table align="center">
+    
+    <tr><td>
+    {% if images %}
+      <table> {# begins left #}
+      {% for image in images %} 
+        <tr>
+          <td>
+            <img src={{image}} style="max-height: 600px; max-width: 60%; display:block;" alt="Image of Artist">
+          </td>
+        </tr>
+      {% endfor %}
+      </table> {# This ends the left table #} 
+      <table> {# closes and opens up a new column for a new table, the tracks #}
+        
+        {% if Tracks %}
+        <tr>
+          <td>
+            Important Tracks:
+            <ol type="1">
+              {% for track in Tracks %} 
+              <li>
+                {{track}}
+              </li>
+              {% endfor %}
+            </ol>
+          </td>
+        </tr>
+        {% endif %}
+        
+      </table>
+      </td>
+        </tr>
+    {% endif %}
+
+    </table>
+
+  </body>
+  
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br> <!-- to extend the background image to the bottom of the page -->
+</div>
+</html>
