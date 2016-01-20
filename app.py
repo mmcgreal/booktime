@@ -4,7 +4,7 @@ import user
 import json
 import urllib2
 
-google_books_API = "https://www.googleapis.com/books/v1/volumes?q=%s&langRestrict=english&maxResults=40&orderBy=relevance&printType=books&showPreorders=true&key=AIzaSyCD5VLpef_d-PeOW7ISL3VsHQCdiuD_T1U" %(query)
+google_books_API = "https://www.googleapis.com/books/v1/volumes?q=%s&langRestrict=english&maxResults=40&orderBy=relevance&printType=books&showPreorders=true&key=AIzaSyCD5VLpef_d-PeOW7ISL3VsHQCdiuD_T1U"
 
 def apiCall(n):
     request = urllib2.urlopen(n)
@@ -140,65 +140,15 @@ def logout():
     
 @app.route("/results",methods=["GET","POST"])
 def main():
-    query = "Macbeth"
+    query = "The Martian"
     if request.method == "POST":
-        query = request.form["artist"] #rename
-    for space in [' ']:
-        query = query.replace(space, "%20")
-    basic = google_books_API + query + """&results=1""" #double check this
-    query = apiCall(basic)
-
-    if query["response"]["books"]:
-        query = query["response"]["books"][0]["name"] #check
-    else:
-	query = "Macbeth"
-    artist = query
+        query = request.form["Novel"] #rename
+    for space in [" "]:
+        query = query.replace(space, "+")
+    basic_url = google_books_API%(query)
+    query = apiCall(basic_url)
     
-    for space in [' ']:
-        query = query.replace(space, "%20")
-    print query
     
-    #url="""http://developer.echonest.com/api/v4/artist/images?api_key=V9SVA3AEDH6NCGYXY&name=""" + query + """&format=json&results=100"""
-    #r = apiCall(url)["response"]["images"]
-
-    #newQuery = apiCall("https://api.spotify.com/v1/search?q=" + query + "&type=artist")["artists"]["items"][0]["id"]
-    #track = apiCall("https://api.spotify.com/v1/artists/" + newQuery + "/top-tracks?country=US")
-
-    final = []
-    counter = 0
-    for image in r:
-        ''' 
-        multiprocessing might have to run in __name__ == "main", stackoverflow here:
-        http://stackoverflow.com/questions/14920384/stop-code-after-time-period 
-        multiprocessing code below, good for reference
-        '''
-        t1 = multiprocessing.Process( target=check_url, name = "check_url", args=(image["url"],))
-        t1.start()
-        #time.sleep(.2);
-        t1.join(.2);
-        valid_image = True
-        print "\n" + image["url"] + "\n"
-        if t1.is_alive():
-            t1.terminate()
-            t1.join()
-            valid_image = False
-            print "check_url taking too long, terminated"
-    	if counter < 1 and valid_image:
-            final.append(image["url"])
-            counter = counter + 1
-    
-    if len(final) > 1:
-        final = final[0:1]
-    Tracks = []
-    for T in track["tracks"]:
-    	Tracks.append(T["name"])
-    return render_template("Artist.html",images=final,artist=artist,Tracks = Tracks)
-
-if (__name__ == "__main__"):
-        app.debug = True
-        app.secret_key = "secret"
-        app.run(host='0.0.0.0', port=8000)
-
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "BookTime"
