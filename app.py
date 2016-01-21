@@ -83,7 +83,16 @@ def userpage():
 
 @app.route("/newpost/", methods=['GET', 'POST'])
 def newpost():
-    if session["logged"]==0:
+    if request.method=="POST":
+        query = request.form["title"]
+        for space in [" "]:
+            query = query.replace(space, "+")
+        basic_url = google_books_API%(query)
+        jsonResult = apiCall(basic_url)
+        dictionary = json.loads(jsonResult)
+        title = dictionary[items[0["title"]]]
+        return render_template("results.html",title=title)
+    elif session["logged"]==0:
         return redirect(url_for("login"))
     elif request.method=="GET":
         username = db.get_user_by_id(session["user"])
@@ -138,16 +147,16 @@ def logout():
     session["logged"]=0
     return redirect(url_for("home"))
     
-@app.route("/results",methods=["GET","POST"])
-def main():
-    query = "The Martian"
-    if request.method == "POST":
-        query = request.form["Novel"] #rename
-    for space in [" "]:
-        query = query.replace(space, "+")
-    basic_url = google_books_API%(query)
-    query = apiCall(basic_url)
-    
+# @app.route("/results",methods=["GET","POST"])
+# def results():
+#     query = "The Martian"
+#     for space in [" "]:
+#         query = query.replace(space, "+")
+#     basic_url = google_books_API%(query)
+#     jsonResult = apiCall(basic_url)
+#     dictionary = json.loads(jsonResult)
+#     title = dictionary[items[0["title"]]]
+#     return render_template("results.html",title=title)
     
 if __name__ == "__main__":
     app.debug = True
