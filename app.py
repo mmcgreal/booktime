@@ -90,21 +90,28 @@ def newpost():
         basic_url = google_books_API%(query)
         jsonResult = apiCall(basic_url)
         dictionary = json.loads(jsonResult)
-        title = dictionary[items[0["title"]]]
+        #title = dictionary[items[0["title"]]]
+        titles = []
+        for item in dictionary[items]:
+            try:
+                newbook = item[items[0["title"]]]
+                titles.append(newbook)
+            except:
+                 pass
         return render_template("results.html",title=title)
     elif session["logged"]==0:
         return redirect(url_for("login"))
     elif request.method=="GET":
         username = db.get_user_by_id(session["user"])
         return render_template("newpost.html", uname=username)
-    else:
-        title = request.form["title"]
-        body = request.form["body"]
-        session["title"] = title
-        session["body"] = body
-        session["author"] = db.get_user_by_id(session["user"])
-        return redirect(url_for("story", storyid=db.add_story(title, session["user"], body, 1)))
-
+    #else:
+    #    title = request.form["title"]
+     #   body = request.form["body"]
+     #   session["title"] = title
+     #   session["body"] = body
+      #  session["author"] = db.get_user_by_id(session["user"])
+     #   return redirect(url_for("story", storyid=db.add_story(title, session["user"], body, 1)))
+        
 @app.route("/edit/", methods=["GET","POST"])
 def edit():
     if session["logged"]==0:
@@ -155,10 +162,20 @@ def logout():
 #     basic_url = google_books_API%(query)
 #     jsonResult = apiCall(basic_url)
 #     dictionary = json.loads(jsonResult)
-#     title = dictionary[items[0["title"]]]
+#     title = dictionary[items[0["title"]]] THIS IS WRONG
+
+#     titles = []
+#     for item in dictionary[items]:
+#     try:
+#           newbook = item[items[0["title"]]]
+   #         titles.append(newbook)
+ #       except:
+ #           pass
+ 
 #     return render_template("results.html",title=title)
-    
+   
+app.secret_key = "BookTime" #not in the if statement below bc DigitalOcean
+
 if __name__ == "__main__":
     app.debug = True
-    app.secret_key = "BookTime"
     app.run('0.0.0.0',port=8000)
