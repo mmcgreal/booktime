@@ -91,11 +91,11 @@ def newpost():
         dictionary = apiCall(basic_url)
         ##dictionary = json.loads(jsonResult)
         #title = dictionary[items[0["title"]]]
-        titles = []
-        for item in dictionary[items]:
+        title = []
+        for item in dictionary["items"]:
             try:
-                newbook = item[0["title"]]
-                titles.append(newbook)
+                newbook = item[0]
+                title.append(newbook)
             except:
                  pass
         return render_template("results.html",title=title)
