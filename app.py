@@ -88,13 +88,13 @@ def newpost():
         for space in [" "]:
             query = query.replace(space, "+")
         basic_url = google_books_API%(query)
-        jsonResult = apiCall(basic_url)
-        dictionary = json.loads(jsonResult)
+        dictionary = apiCall(basic_url)
+        ##dictionary = json.loads(jsonResult)
         #title = dictionary[items[0["title"]]]
         titles = []
         for item in dictionary[items]:
             try:
-                newbook = item[items[0["title"]]]
+                newbook = item[0["title"]]
                 titles.append(newbook)
             except:
                  pass
