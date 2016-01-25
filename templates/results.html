@@ -25,7 +25,8 @@ Search for a Book!
   {% if pages %}
   <p>Please read the following description of your book.  Based on the amount of time it takes you to read this sample, we will calculate how long it would take you to read this book, which has {{pages}} pages.</p>
   <br>
-  <button class="btn">Start</button>
+  <button class="btn" onclick="startFunction()">Start</button>
+  <p id="start"></p>
   {% endif %}
   <hr>
   {% if description %}
@@ -33,7 +34,31 @@ Search for a Book!
   {% endif %}
   <hr>
   <br>
-  <button class="btn">Stop</button>
+  <button class="btn" onclick="stopFunction()">Stop</button>
+  <p id="stop"></p>
+  <p id="final"></p>
+  <p id="book"></p>
+  <script>
+  var Time = {};
+  function startFunction() {
+    Time.start = new Date().getTime();
+    document.getElementById("stop").innerHTML = "";
+    document.getElementById("final").innerHTML = "";
+    document.getElementById("book").innerHTML = "";
+    document.getElementById("start").innerHTML = "Timer Started";
+  }
+  function stopFunction() {
+    Time.stop = new Date().getTime();
+    document.getElementById("stop").innerHTML = "Timer Stopped";
+    document.getElementById("final").innerHTML = "Seconds it took to read passage: " + (Time.stop - Time.start)/1000;
+    Time.final = ({{pages}} * 2.5 * (Time.stop-Time.start)/3600000);
+    Time.hours = Math.floor(Time.final);
+    Time.minutes = Math.floor(60*(Time.final - Time.hours));
+    Time.seconds = Math.abs(Math.round(100*(Time.minutes-(Time.final - Time.hours))))/100;
+    document.getElementById("book").innerHTML = "Time it will take to read the book: " + Time.hours + " hours, " + Time.minutes + " minutes, and " + Time.seconds + " seconds";
+    document.getElementById("start").innerHTML = "";
+  }
+  </script>
   <br><br>
 
    <!--  <form method = "POST"> -->
