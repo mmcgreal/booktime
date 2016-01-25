@@ -1,20 +1,40 @@
-<!DOCTYPE HTML>
-<html> 
+{% extends "resultsBase.html" %}
+
+{% block title %}
+
+Search for a Book!
+
+{% endblock %}
+
+{% block contents %}
+
+<div class="resultsheader"></div>
+<img id="logo" class="smalllogo" src="{{ url_for('static', filename='logo.png') }}" alt="booktimelogo" height="50"><h1 class="headtext">BookTime Results</h1>
+<div class="resultsbody">
+
+<br><br><br><br><br><br>
+
   {% if title %}
-  {{title}}
+  <h1>{{title}}</h1>
   {% endif %}
-  <br><br>
-  {% if author %}
+  <br>
+  <p>By</p>{% if author %}
   {{author}}
   {% endif %}
   <br><br>
+  {% if pages %}
+  <p>Please read the following description of your book.  Based on the amount of time it takes you to read this sample, we will calculate how long it would take you to read this book, which has {{pages}} pages.</p>
+  <br>
+  <button class="btn">Start</button>
+  {% endif %}
+  <hr>
   {% if description %}
   {{description}}
   {% endif %}
+  <hr>
+  <br>
+  <button class="btn">Stop</button>
   <br><br>
-  {% if pages %}
-  {{pages}}
-  {% endif %}
 
    <!--  <form method = "POST"> -->
 <!--       Search for an artist/band:  -->
@@ -33,7 +53,7 @@
 <!--     <table align="center"> -->
     
 <!--     <tr><td> -->
-<!--     {% if images %} -->
+<!--     {% if images %} --<a href="results.html" id="" title="results">results</a>>
 <!--       <table> {# begins left #} -->
 <!--       {% for image in images %}  -->
 <!--         <tr> -->
@@ -70,5 +90,8 @@
 <!--   </body> -->
   
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br> <!-- to extend the background image to the bottom of the page -->
+  
 </div>
-</html>
+
+
+{% endblock%}

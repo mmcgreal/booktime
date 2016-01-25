@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %} - BookTime</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" />
+  </head>
+  <body {% if index %}class="index"{% endif %}>
+    <div id="container">
+ 
+      
+      <div class="header"></div>
+      <div class="headtext">
+	<img id="logo" class="smalllogo" src="{{ url_for('static', filename='logo.png') }}" alt="booktimelogo" height="50">
+	<h1 class="headtext">{% block heading %}{% endblock %}</h1>
+	<a href="/logout" class="btn" style="float: right"> Logout </a>
+      </div>
+      {% block contents %}{% endblock %}
+    </div>
+  </body>
+</html>
