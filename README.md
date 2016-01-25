@@ -41,13 +41,12 @@
     * css
     * html
 	
-###left to do:
+###To Do: Updated
 * finalize images for website
 * make a stored book less like a post and more like a "favorite" item
 * create libraries for books
 	* instead of users being directed to a main page with book entries, allow them to select a library which will then display books they/ other users have searched for and stored
 * finalize color scheme!!
-* description of BookTime on homepage
 
 ##Timeline
 * By midnight January 10th (Sunday night):
@@ -61,3 +60,7 @@
   * finish utils.py
 * by midnight January 21st (Thursday night):
   * polish up everything and submit!
+  
+##Digital Ocean
+* http://booktime.bookbeard.com/
+  
