@@ -89,20 +89,17 @@ def newpost():
             query = query.replace(space, "+")
         basic_url = google_books_API%(query)
         dictionary = apiCall(basic_url)
-        ##print dictionary
-        ##dictionary = json.loads(jsonResult)
-        #title = dictionary[items[0["title"]]]
         title = []
-        for item in dictionary["items"]:
-            try:
-                newbook = item[0]
-                title.append(newbook)
-            except:
-                 pass
-        for x in dictionary:
-            print x
-        ##return title
-        return render_template("results.html",title=title)
+        author = []
+        description = []
+        pages = []
+        ##title.append(dictionary["items"][0]["title"])
+        title.append(dictionary["items"][0]["volumeInfo"]["title"])
+        author.append(dictionary["items"][0]["volumeInfo"]["authors"])
+        description.append(dictionary["items"][0]["volumeInfo"]["description"])
+        pages.append(dictionary["items"][0]["volumeInfo"]["pageCount"])
+        ##title.append(dictionary["items"])
+        return render_template("results.html",title=title[0],author=author[0][0],description=description[0],pages=pages[0])
     elif session["logged"]==0:
         return redirect(url_for("login"))
     elif request.method=="GET":

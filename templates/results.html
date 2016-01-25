@@ -1,18 +1,20 @@
 <!DOCTYPE HTML>
 <html> 
-  <head>
-    <title>
-      {% if title %}
-      {{title}}
-      {% endif %}
-    </title>
-  </head>
-
-
-  <body bgcolor="silver">
-    <h1 align="center">
-      {{title}}
-    </h1>
+  {% if title %}
+  {{title}}
+  {% endif %}
+  <br><br>
+  {% if author %}
+  {{author}}
+  {% endif %}
+  <br><br>
+  {% if description %}
+  {{description}}
+  {% endif %}
+  <br><br>
+  {% if pages %}
+  {{pages}}
+  {% endif %}
 
    <!--  <form method = "POST"> -->
 <!--       Search for an artist/band:  -->
