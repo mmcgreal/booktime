@@ -89,6 +89,7 @@ def newpost():
             query = query.replace(space, "+")
         basic_url = google_books_API%(query)
         dictionary = apiCall(basic_url)
+        ##print dictionary
         ##dictionary = json.loads(jsonResult)
         #title = dictionary[items[0["title"]]]
         title = []
@@ -98,6 +99,9 @@ def newpost():
                 title.append(newbook)
             except:
                  pass
+        for x in dictionary:
+            print x
+        ##return title
         return render_template("results.html",title=title)
     elif session["logged"]==0:
         return redirect(url_for("login"))
