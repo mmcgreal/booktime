@@ -55,7 +55,7 @@ Search for a Book!
     Time.hours = Math.floor(Time.final);
     Time.minutes = Math.floor(60*(Time.final - Time.hours));
     Time.seconds = Math.abs(Math.round(100*(Time.minutes-(Time.final - Time.hours))))/100;
-    document.getElementById("book").innerHTML = "Time it will take to read the book: " + Time.hours + " hours, " + Time.minutes + " minutes, and " + Time.seconds + " seconds";
+    document.getElementById("book").innerHTML = "Time it will take you to read the book: " + Time.hours + " hours, " + Time.minutes + " minutes, and " + Time.seconds + " seconds";
     document.getElementById("start").innerHTML = "";
   }
   </script>
