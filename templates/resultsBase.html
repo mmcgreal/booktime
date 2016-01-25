@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+    a2 {
+      color: #2c3e50;
+      opacity: 0.0;
+    }
+    </style>
     <title>{% block title %}{% endblock %} - BookTime</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}" />
@@ -14,7 +20,9 @@
       <div class="headtext">
 	<img id="logo" class="smalllogo" src="{{ url_for('static', filename='logo.png') }}" alt="booktimelogo" height="50">
 	<h1 class="headtext">{% block heading %}{% endblock %}</h1>
+  <a2 style="float: right" >"</a2>
 	<a href="/logout" class="btn" style="float: right"> Logout </a>
+  <a2 style="float: right" >"</a2>
   <a href="/newpost" class="btn" style="float: right"> New Search </a>
       </div>
       {% block contents %}{% endblock %}
